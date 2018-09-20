@@ -48,12 +48,12 @@ public class DemoTest extends Base {
 			Validations vq = PageFactory.initElements(Driver.driver, Validations.class);
 			vq.validateEmbed();
 			
-			TestRunner run = new TestRunner();
-			run.runner();
+			//TestRunner run = new TestRunner();
 			
 		} catch (Throwable e) {
-			e.printStackTrace();
 			e.getMessage();
+			e.printStackTrace();
+			
 			}
 	}
 

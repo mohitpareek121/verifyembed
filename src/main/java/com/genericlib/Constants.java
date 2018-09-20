@@ -10,7 +10,7 @@ public interface Constants {
 	
 	String password = "qa-test";
 	
-	String embedname ="Embed-Test-74";
+	String embedname ="Embed-Test-100";
 	
 	
 	

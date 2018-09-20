@@ -29,6 +29,9 @@ public class WelcomePage extends CommonLibs {
     @FindBy (xpath ="//button[@id='submitMockBtn']")
     private WebElement mocksubmit;
     
+    @FindBy (xpath="//*[@aria-labelledby='select2-clientUUIDForMock-container']/span[@id='select2-clientUUIDForMock-container']")
+    private WebElement clientfirstoptionconfirmselection;
+    
    public boolean isClientsIteMenuDisplayed() {
     	
     	try {
@@ -52,7 +55,15 @@ public class WelcomePage extends CommonLibs {
     {
     	allclientmenu.click();
     	clientfirstoption.click();
-    	mocksubmit.click();
+    	String title = clientfirstoptionconfirmselection.getAttribute("title");
+    	if(title!="")
+    	{
+    		mocksubmit.click();
+    	}
+    	else
+    	{
+    		clientfirstoption.click();
+    	}
     	waitForPageToLoad();
     }
 

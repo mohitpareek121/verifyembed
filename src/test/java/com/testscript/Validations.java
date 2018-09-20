@@ -1,17 +1,22 @@
 package com.testscript;
 
-import org.hamcrest.Matcher;
+import java.util.ArrayList;
+
+import static org.hamcrest.CoreMatchers.equalTo;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.rules.ErrorCollector;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import com.insticator.POM.CustomizeTabOne;
 
-public class Validations extends CustomizeTabOne {
-	
-	
+public class Validations extends CustomizeTabOne 
+
+{
 	@FindBy (xpath="(//*[text()='quiz'])[1]")
 	protected WebElement quiz;
 	
@@ -25,7 +30,7 @@ public class Validations extends CustomizeTabOne {
     public ErrorCollector collector = new ErrorCollector();
 	
 	@Test
-	public void validateEmbed()
+	public void validateEmbed() throws Throwable
 	{
 		
 	int countnw = cardcontainer.size();
@@ -41,57 +46,18 @@ public class Validations extends CustomizeTabOne {
 				break;
 			}
 		}
-	// Quiz question (1-4) - title and answer code	
+	// Quiz question (1-4) - title and answer code verification
 	if(selectedTab.getAttribute("class").contains("true"))
 	{
 		switch (k) 
 		{
 		case 0: 
-			try 
-			{
-				//Assertions.assertEquals(quesOne.getText(), "What is name?");
-				Assertions.assertEquals("What is your name?", quesOne.getText(), "Question 1 names are not matched");
-			}
-			catch(Throwable e)
-			{
-				collector.addError(e);
-				
-			}
-			try 
-			{
-				Assertions.assertEquals(ansOne.getText(),"Cat");
-				//collector.checkThat(1, matcher);;
-			}
-			catch(Throwable e)
-			{
-				collector.addError(e);
-				
-				
-			}
-			try 
-			{
-				Assertions.assertEquals(ansTwo.getText(),"test");
-			}
-			catch(Throwable e)
-			{
-				collector.addError(e);
-			}
-			try 
-			{
-				Assertions.assertEquals(ansThree.getText(),"tes");
-			}
-			catch(Throwable e)
-			{
-				collector.addError(e);
-			}
-			try
-			{
+			 
+				collector.checkThat("What is your name?",equalTo(quesOne.getText()));
+				collector.checkThat("John",equalTo(ansOne.getText()));
+				collector.checkThat("Mark",equalTo(ansTwo.getText()));
+				collector.checkThat("Katherine",equalTo(ansThree.getText()));
 				Assertions.assertTrue(correctAnswer.isSelected());
-			}
-			catch(Throwable e)
-			{
-				collector.addError(e);
-			}
 			break;
 			
 		case 1:
@@ -168,6 +134,7 @@ public class Validations extends CustomizeTabOne {
 			catch(Throwable e)
 			{
 				collector.addError(e);
+				
 			}
 			try
 			{
@@ -175,6 +142,7 @@ public class Validations extends CustomizeTabOne {
 			}
 			catch(Throwable e)
 			{
+				collector.toString();
 				collector.addError(e);
 			}
 			try
@@ -291,6 +259,7 @@ public class Validations extends CustomizeTabOne {
 			catch(Throwable e)
 			{
 				collector.addError(e);
+				//System.out.println(e.getMessage());
 			}
 			break;
 			
@@ -303,10 +272,15 @@ public class Validations extends CustomizeTabOne {
 			catch(Throwable e)
 			{
 				collector.addError(e);
+				
+				//System.out.println(e.getMessage());
 			}
 			break;
 		}	
 	}
   }
- }
 }
+}
+	
+	
+

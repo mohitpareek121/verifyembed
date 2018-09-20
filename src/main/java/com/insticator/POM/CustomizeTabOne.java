@@ -1,5 +1,6 @@
 package com.insticator.POM;
 
+import java.io.File;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -36,7 +37,7 @@ public class CustomizeTabOne extends CommonLibs {
 	@FindBy(css = ".editable-true .question .editabletext")
 	protected WebElement quesOne;
 
-	@FindBy(css = ".editable-true .c0168:nth-of-type(1) .imageindicator")
+	@FindBy(xpath = "(//span[@data-tip='Select an image'])[1]")
 	private WebElement imageOne;
 
 	@FindBy(css = ".imageTypes")
@@ -47,18 +48,17 @@ public class CustomizeTabOne extends CommonLibs {
 
 	@FindBy(css = "span:nth-of-type(1) .imagevisual")
 	private WebElement GiphyImageOne;
-
+	
 	@FindBy(css="span:nth-of-type(2) .imagevisual")
 	private WebElement GiphyImageTwo;
 	
 	@FindBy(css="span:nth-of-type(3) .imagevisual")
 	private WebElement GiphyImageThree;
 
-	
 	@FindBy(xpath = "(((//div[@id='customize']//div[@class='group'])[2]//span[@class='photo']/span[2])[1])//div")
 	protected WebElement ansOne;
 
-	@FindBy(css = ".editable-true .c0168:nth-of-type(2) .imageindicator")
+	@FindBy(xpath = "(//span[@data-tip='Select an image'])[2]")
 	private WebElement imageTwo;
 
 	@FindBy(css = ".imageTypes span:nth-of-type(2)")
@@ -91,7 +91,7 @@ public class CustomizeTabOne extends CommonLibs {
 	@FindBy(xpath = "(//div[@class='icon'])[4]")
 	protected WebElement correctAnswer2;
 	
-	@FindBy(css = ".editable-true .c0168:nth-of-type(3) .imageindicator") 
+	@FindBy(xpath = "(//span[@data-tip='Select an image'])[3]") 
 	private WebElement imageThree;
 
 	@FindBy(css = ".imageTypes span:nth-of-type(3)")
@@ -158,7 +158,7 @@ public class CustomizeTabOne extends CommonLibs {
 	@FindBy (xpath="//button[text()='Finish & Return to Library']")
 	private WebElement Finish;
 	
-	@FindBy (xpath="//div[@class='cardcontainer']/div")
+	@FindBy (xpath="//div[starts-with(@class,'cardcontainer')]/div")
 	protected List<WebElement> cardcontainer;
 	
 	@FindBy (xpath="//div[@class='cardcontainer']")
@@ -170,11 +170,14 @@ public class CustomizeTabOne extends CommonLibs {
 	public void QuizQuestion() throws InterruptedException {
 		try {
 			
-			uploadImage.sendKeys("C:\\Users\\user\\Desktop\\download.jpg");
+		// upload image in for Embed
+			
+			File file = new File("src/resources/download.jpg");
+			uploadImage.sendKeys(file.getAbsolutePath());
 			Thread.sleep(1000);
 			btnSubmit.click();
 			Thread.sleep(1000);
-			linkImage.sendKeys("www.google.com");
+			linkImage.sendKeys("www.google.co.in");
 			Thread.sleep(1000);
 			brandcolor.click();
 			Thread.sleep(1000);
@@ -182,35 +185,34 @@ public class CustomizeTabOne extends CommonLibs {
 			Thread.sleep(1000);
 			btnaddcolor.click();
 			Thread.sleep(2000);
-		
 			quesOne.sendKeys("What is your name?");
 			Thread.sleep(1000);
 			
-			// Image One Selection
+		// Quiz question one
+			
 			imageOne.click();
 			Thread.sleep(2000);
 			GiphyImageOne.click();
 			Thread.sleep(2000);
-			ansOne.sendKeys("Cat");
+			ansOne.sendKeys("John");
 			Thread.sleep(2000);
 			imageTwo.click();
-			Thread.sleep(6000);
+			Thread.sleep(4000);
 			GiphyImageTwo.click();
 			Thread.sleep(2000);
-			ansTwo.sendKeys("Dog");
+			ansTwo.sendKeys("Mark");
 			Thread.sleep(2000);
 			imageThree.click();
-			Thread.sleep(4000);
-			
+			Thread.sleep(2000);
 			GiphyImageThree.click();
-			ansThree.sendKeys("Bird");
+			ansThree.sendKeys("Katherine");
 			Thread.sleep(2000);
 			correctAnswer2.click();	
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			addAnswer.click();
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 			
-			// FOMRAT TWO CODE
+		// Quiz question 2
 //			Format.get(1).click();
 //			Thread.sleep(2000);
 //			quesOne.clear();
@@ -246,13 +248,13 @@ public class CustomizeTabOne extends CommonLibs {
 //			Thread.sleep(2000);
 //			
 			
-			// FORMAT THREE CODE
+		// Quiz question 3
 			
 			Format.get(2).click();
 			Thread.sleep(2000);
 			quesOne.clear();
 			Thread.sleep(1000);
-			quesOne.sendKeys("Choose any Text answer?");
+			quesOne.sendKeys("Select any text answer?");
 			Thread.sleep(1000);
 			a1.sendKeys("Hello I am John");
 			Thread.sleep(1000);
@@ -261,173 +263,181 @@ public class CustomizeTabOne extends CommonLibs {
 			a3.sendKeys("Hello I am Jack");
 			Thread.sleep(1000);
 			correctansone.click();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			addAnswer.click();
+			Thread.sleep(1000);
+			
+		// Quiz question 4
+			
+			Format.get(3).click();
+			Thread.sleep(1000);
+			quesOne.clear();
+			Thread.sleep(1000);
+			quesOne.sendKeys("Choose any item?");
+			a1.clear();
+			a1.sendKeys("ABC");
+			Thread.sleep(1000);
+			a2.clear();
+			a2.sendKeys("XYZ");
+			Thread.sleep(1000);
+			a3.clear();
+			a3.sendKeys("LMP");
+			Thread.sleep(1000);
+			correctansone.click();
+			Thread.sleep(1000);
+			addAnswer.click();
+			Thread.sleep(1000);
+						
+		// Poll Question 1
+						
+			poll.click();
+			Thread.sleep(1000);
+			quesOne.clear();
+			Thread.sleep(1000);
+			quesOne.sendKeys("Please select any one?");
+			Thread.sleep(1000);
+			imageOne.click();
+			Thread.sleep(1000);
+			GiphyImageOne.click();
+			Thread.sleep(1000);
+			ansOne.sendKeys("AAA");
+			Thread.sleep(1000);
+						
+			imageTwo.click();
+			Thread.sleep(1000);
+			GiphyImageTwo.click();
+			Thread.sleep(1000);
+			ansTwo.sendKeys("BBB");
+			Thread.sleep(1000);
+			imageThree.click();
+			Thread.sleep(1000);
+			GiphyImageThree.click();
+			Thread.sleep(1000);
+			ansThree.sendKeys("CCC");
+			Thread.sleep(1000);
+			addAnswer.click();
+			
+						
+	//Poll question 2
+//			poll.click();
+//			Thread.sleep(2000);
+//			poll.click();
+//			Thread.sleep(2000);
+//			Format.get(1).click();
+//			Thread.sleep(1000);
+//			quesOne.clear();
+//			Thread.sleep(1000);
+//			quesOne.sendKeys("Large images?");
+//			Thread.sleep(2000);
+//			imageOne.click();
+//			Thread.sleep(2000);
+//			SelectImage2.click();
+//			GiphyImageOne.click();
+//			ImagesTab.click();
+//			Thread.sleep(2000);
+//			ImagesTab.click();
+//			Thread.sleep(2000);
+//			imageTwo.click();
+//			Thread.sleep(3000);
+//			SelectImage2.click();
+//			Thread.sleep(3000);
+//			imageThree.click();
+//			Thread.sleep(3000);
+//					
+//			SelectImage3.click();
+//			Thread.sleep(4000);
+//			addAnswer.click();
+//			Thread.sleep(1000);
+//			
+		// Poll Question 3
+			poll.click();
+			Thread.sleep(1000);
+			poll.click();
+			Thread.sleep(1000);
+			Format.get(2).click();
+			Thread.sleep(1000);
+			quesOne.clear();
+			Thread.sleep(1000);
+			quesOne.sendKeys("Select and poll answer?");
+			Thread.sleep(1000);
+			a1.sendKeys("Poll one");
+			Thread.sleep(1000);
+			a2.sendKeys("Poll two");
+			Thread.sleep(1000);
+			a3.sendKeys("Poll three");
+			Thread.sleep(1000);
+			addAnswer.click();
+			
+		// Poll Question 5
+			poll.click();
+			Thread.sleep(1000);
+			poll.click();
+			Thread.sleep(1000);
+			Format.get(4).click();
 			Thread.sleep(2000);
-			
-			// FORMAT FOUR CODE
-			
-						Format.get(3).click();
-						Thread.sleep(2000);
-						quesOne.clear();
-						Thread.sleep(2000);
-						quesOne.sendKeys("Choose any White background?");
-						a1.clear();
-						a1.sendKeys("ABC");
-						Thread.sleep(2000);
-						a2.clear();
-						a2.sendKeys("XYZ");
-						Thread.sleep(2000);
-						a3.clear();
-						a3.sendKeys("LMP");
-						Thread.sleep(2000);
-						correctansone.click();
-						Thread.sleep(1000);
-						addAnswer.click();
-						Thread.sleep(1000);
-						
-			// SELECT "POLL" Question
-						
-						poll.click();
-						Thread.sleep(2000);
-						
-						quesOne.clear();
-						Thread.sleep(2000);
-						quesOne.sendKeys("Animal name?");
-						Thread.sleep(2000);
-						
-						imageOne.click();
-						Thread.sleep(2000);
-						GiphyImageOne.click();
-						Thread.sleep(1000);
-						ansOne.sendKeys("AAA");
-						Thread.sleep(1000);
-						
-						imageTwo.click();
-						Thread.sleep(2000);
-						GiphyImageTwo.click();
-						Thread.sleep(2000);
-						ansTwo.sendKeys("BBB");
-						Thread.sleep(2000);
-						imageThree.click();
-						Thread.sleep(2000);
-						GiphyImageThree.click();
-						Thread.sleep(2000);
-						ansThree.sendKeys("CCC");
-						Thread.sleep(1000);
-						addAnswer.click();
-						
-						
-						//FOMRAT CODE 2
-//						poll.click();
-//						Thread.sleep(2000);
-//						poll.click();
-//						Thread.sleep(2000);
-//						Format.get(1).click();
-//						Thread.sleep(1000);
-//						quesOne.clear();
-//						Thread.sleep(1000);
-//						quesOne.sendKeys("Large images?");
-//						Thread.sleep(2000);
-//						imageOne.click();
-//						Thread.sleep(2000);
-//						SelectImage2.click();
-//						GiphyImageOne.click();
-//						ImagesTab.click();
-//						Thread.sleep(2000);
-//						ImagesTab.click();
-//						Thread.sleep(2000);
-//						imageTwo.click();
-//						Thread.sleep(3000);
-//						SelectImage2.click();
-//						Thread.sleep(3000);
-//						imageThree.click();
-//						Thread.sleep(3000);
-//						
-//						SelectImage3.click();
-//						Thread.sleep(4000);
-//						addAnswer.click();
-//						Thread.sleep(1000);
-//						
-						// FORMAT THREE CODE
-						poll.click();
-						Thread.sleep(2000);
-						poll.click();
-						Thread.sleep(2000);
-						Format.get(2).click();
-						Thread.sleep(1000);
-						quesOne.clear();
-						Thread.sleep(1000);
-						quesOne.sendKeys("Poll questions?");
-						Thread.sleep(1000);
-						a1.sendKeys("Poll one");
-						Thread.sleep(1000);
-						a2.sendKeys("Poll two");
-						Thread.sleep(1000);
-						a3.sendKeys("Poll three");
-						Thread.sleep(1000);
-						addAnswer.click();
-						
-						// Click on Poll Tab Fourth format >> Emoji Question
-									poll.click();
-									Thread.sleep(2000);
-									poll.click();
-									Thread.sleep(2000);
-					
-									Format.get(4).click();
-									Thread.sleep(2000);
-									quesOne.clear();
-									Thread.sleep(1000);
-									quesOne.sendKeys("Poll emojis?");
-									Thread.sleep(1000);
-									Firstemoji.click();
-									Thread.sleep(2000);
-									emoji_one.click();
-									Thread.sleep(4000);
-									Secondemoji.click();
-									Thread.sleep(3000);
-									emoji_two.click();
-									Thread.sleep(2000);
-									Thirdemoji.click();
-									Thread.sleep(5000);
-									emoji_three.click();
-									Thread.sleep(1000);
-									addAnswer.click();
-									Thread.sleep(2000);
-			// capture last element from container and remove it
-									int count = cardcontainer.size();
-									Driver.driver.findElement(By.xpath("(//div[@class='contentnumber'])["+count+"]/..//div[@data-tip='Remove this content']")).click();
-									Thread.sleep(2000);
+			quesOne.clear();
+			Thread.sleep(1000);
+			quesOne.sendKeys("Select any Emoji");
+			Thread.sleep(1000);
+			Firstemoji.click();
+			Thread.sleep(1000);
+			emoji_one.click();
+			Thread.sleep(1000);
+			Secondemoji.click();
+			Thread.sleep(1000);
+			emoji_two.click();
+			Thread.sleep(1000);
+			Thirdemoji.click();
+			Thread.sleep(1000);
+			emoji_three.click();
+			Thread.sleep(1000);
+			addAnswer.click();
+			Thread.sleep(1000);
+	
+		// capture last element from container and remove it
+		
+			int count = cardcontainer.size();
+			Driver.driver.findElement(By.xpath("(//div[@class='contentnumber'])["+count+"]/..//div[@data-tip='Remove this content']")).click();
+			Thread.sleep(1000);
 								
-			// click on right side arrow to move on add section
-									rightarrow.click();
-									Thread.sleep(1000);
-			// click add on toggle button
-									addOn.click();
-									Thread.sleep(1000);
-			// click on right side arrow to move on add section
-									rightarrow.click();
-									Thread.sleep(1000);
-			// click on market research and Reward toggle button
-									marketResearchSwitch.click();
-									Thread.sleep(1000);
-									rewardSwitch.click();
-									Thread.sleep(1000);
-	       // click on right side arrow to move on add section
-									rightarrow.click();		
-									Thread.sleep(1000);
-	       // click on Finish & Return to Library button
-									Finish.click();
-									Thread.sleep(1000);
-									Driver.driver.navigate().refresh();
-									Thread.sleep(3000);
-									actual_embed_name.click();
-					} 
-					
-					catch (Exception e) 
-					{
-						e.printStackTrace();
-					}
-
+		// click on right side arrow to move on add section
+			
+			rightarrow.click();
+			Thread.sleep(1000);
+		
+		// click add on toggle button
+			
+			addOn.click();
+			Thread.sleep(1000);
+		
+		// click on right side arrow to move on add section
+			
+			rightarrow.click();
+			Thread.sleep(1000);
+		
+		// click on market research and Reward toggle button
+			
+			marketResearchSwitch.click();
+			Thread.sleep(1000);
+			rewardSwitch.click();
+			Thread.sleep(1000);
+			
+	     // click on right side arrow to move on add section
+			
+			rightarrow.click();		
+			Thread.sleep(1000);
+	       
+		// click on Finish & Return to Library button
+			
+			Finish.click();
+			Thread.sleep(1000);
+			Driver.driver.navigate().refresh();
+			Thread.sleep(3000);
+			actual_embed_name.click();
+	} 			
+		catch (Exception e) 
+		{
+		e.printStackTrace();
+		}
 	}
 }
